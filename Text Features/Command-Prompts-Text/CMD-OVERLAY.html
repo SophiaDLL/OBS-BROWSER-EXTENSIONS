@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Console Simulation</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        .console {
+            border: 5px solid pink;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            height: 300px;
+            overflow: hidden;
+            font-size: 16px;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="console" id="console"></div>
+
+    <script>
+        const consoleElement = document.getElementById('console');
+
+        const lines = [
+            "sophia@machine:~$ cd Documents",
+            "sophia@machine:~/Documents$ cd Projects",
+            "sophia@machine:~/Documents/Projects$ cd WebDev",
+            "sophia@machine:~/Documents/Projects/WebDev$ cd Scripts",
+            "sophia@machine:~/Documents/Projects/WebDev/Scripts$ cd Utils",
+            "sophia@machine:~/Documents/Projects/WebDev/Scripts/Utils$ cd Code",
+            "sophia@machine:~/Documents/Projects/WebDev/Scripts/Utils/Code$ echo sponsor.txt",
+            'sophia@machine:~$ loading [*]',
+            'sophia@machine:~$ loading [**]',
+            'sophia@machine:~$ loading [***]',
+            'sophia@machine:~$ loading [*]',
+            'sophia@machine:~$ loading [**]',
+            'sophia@machine:~$ loading [***]',
+            'sophia@machine:~$ loading [OK]',
+            '⚡ USE CODE "SOPHIA" FOR 25% OFF YOUR PURCHASE @ https://laurelnwk.com'
+        ];
+
+        let i = 0;
+
+        function typeEffect() {
+            if (i < lines.length) {
+                const line = lines[i];
+                const promptPart = line.split('$')[0] + '$'; 
+                const commandPart = line.split('$')[1] || '';
+
+                
+                consoleElement.innerHTML += promptPart;
+
+                
+                let j = 0;
+                function typeChar() {
+                    if (j < commandPart.length) {
+                        consoleElement.innerHTML += commandPart[j];
+                        j++;
+                        setTimeout(typeChar, 100); 
+                    } else {
+                        consoleElement.innerHTML += '<br>';
+                        i++;
+                        setTimeout(typeEffect, 100); 
+                        scrollToBottom(); 
+                    }
+                }
+
+                typeChar();
+            } else {
+                
+                setTimeout(() => {
+                    consoleElement.innerHTML = ''; 
+                   
+                    newTextEffect1();
+                }, 5000);
+            }
+        }
+
+        // New set of text 1
+        function newTextEffect1() {
+            const newLines1 = [
+                'sophia@machine:~$ git clone https://github.com/lnwk/discord',
+                'sophia@machine:~$ cd discord',
+                'sophia@machine:~/discord$ npm install',
+                'sophia@machine:~/discord$ npm start',
+                'sophia@machine:~/discord$ echo "Project Started"',
+                'sophia@machine:~/discord$ loading [*]',
+                'sophia@machine:~/discord$ loading [**]',
+                'sophia@machine:~/discord$ loading [***]',
+                'sophia@machine:~/discord$ loading [OK]',
+                '🚀 Project has been started successfully!',
+                'discord.gg/LNWK'
+            ];
+            let j = 0;
+
+            function typeNewEffect1() {
+                if (j < newLines1.length) {
+                    const line = newLines1[j];
+                    const promptPart = line.split('$')[0] + '$'; 
+                    const commandPart = line.split('$')[1] || '';
+
+                    
+                    consoleElement.innerHTML += promptPart;
+
+                   
+                    let k = 0;
+                    function typeNewChar() {
+                        if (k < commandPart.length) {
+                            consoleElement.innerHTML += commandPart[k];
+                            k++;
+                            setTimeout(typeNewChar, 100);
+                        } else {
+                            consoleElement.innerHTML += '<br>';
+                            j++;
+                            setTimeout(typeNewEffect1, 100); 
+                            scrollToBottom(); 
+                        }
+                    }
+
+                    typeNewChar();
+                } else {
+                   
+                    setTimeout(() => {
+                        consoleElement.innerHTML = ''; 
+                        newTextEffect2();  
+                    }, 5000);
+                }
+            }
+
+            typeNewEffect1();
+        }
+
+        function newTextEffect2() {
+            const newLines2 = [
+            'sophia@machine:~$ follow @SophiaOnline',
+            'sophia@machine:~$ visit https://linktr.ee/lnwk',
+            'sophia@machine:~$ like and share for more updates',
+            'sophia@machine:~/social$ check out my latest projects!',
+            'sophia@machine:~/social$ loading [*]',
+            'sophia@machine:~/social$ loading [**]',
+            'sophia@machine:~/social$ loading [***]',
+            'sophia@machine:~/social$ loading [OK]',
+            '🚀 Thank you for following! More content coming soon!',
+            '💬 Stay connected and follow for updates!'
+            ];
+            let j = 0;
+
+            function typeNewEffect2() {
+                if (j < newLines2.length) {
+                    const line = newLines2[j];
+                    const promptPart = line.split('$')[0] + '$'; 
+                    const commandPart = line.split('$')[1] || '';
+
+                    
+                    consoleElement.innerHTML += promptPart;
+
+                    
+                    let k = 0;
+                    function typeNewChar() {
+                        if (k < commandPart.length) {
+                            consoleElement.innerHTML += commandPart[k];
+                            k++;
+                            setTimeout(typeNewChar, 100); 
+                        } else {
+                            consoleElement.innerHTML += '<br>';
+                            j++;
+                            setTimeout(typeNewEffect2, 100); 
+                            scrollToBottom(); 
+                        }
+                    }
+
+                    typeNewChar();
+                } else {
+                    setTimeout(() => {
+                        consoleElement.innerHTML = ''; 
+                        newTextEffect3();  
+                    }, 5000);
+                }
+            }
+
+            typeNewEffect2();
+        }
+
+        function newTextEffect3() {
+            const newLines3 = [
+            'sophia@machine:~$ visit https://laurelnwk.com',
+            'sophia@machine:~$ discover amazing sponsorships',
+            'sophia@machine:~/laurelnwk$ explore exclusive deals for creators',
+            'sophia@machine:~/laurelnwk$ loading [*]',
+            'sophia@machine:~/laurelnwk$ loading [**]',
+            'sophia@machine:~/laurelnwk$ loading [***]',
+            'sophia@machine:~/laurelnwk$ loading [OK]',
+            '🎉 Use the code "SOPHIA" for 25% OFF your first sponsorship deal!',
+            '💼 Become a partner today at sponsor@laurelnwk.com'
+            ];
+            let j = 0;
+
+            function typeNewEffect3() {
+                if (j < newLines3.length) {
+                    const line = newLines3[j];
+                    const promptPart = line.split('$')[0] + '$'; 
+                    const commandPart = line.split('$')[1] || '';
+
+                    
+                    consoleElement.innerHTML += promptPart;
+
+                    let k = 0;
+                    function typeNewChar() {
+                        if (k < commandPart.length) {
+                            consoleElement.innerHTML += commandPart[k];
+                            k++;
+                            setTimeout(typeNewChar, 100); 
+                        } else {
+                            consoleElement.innerHTML += '<br>';
+                            j++;
+                            setTimeout(typeNewEffect3, 100); 
+                            scrollToBottom(); 
+                        }
+                    }
+
+                    typeNewChar();
+                } else {
+                    
+                    setTimeout(() => {
+                        consoleElement.innerHTML = '';
+                        i = 0; 
+                        newTextEffect4(); 
+                    }, 5000);
+                }
+            }
+
+            typeNewEffect3();
+        }
+
+        function newTextEffect4() {
+            const newLines4 = [
+            'sophia@machine:~$ check out recommended streamers',
+            'sophia@machine:~$ visit https://www.twitch.tv/tubbzfl',
+            'sophia@machine:~$ visit https://www.twitch.tv/stallion',
+            'sophia@machine:~$ visit https://www.twitch.tv/melodic_hammond',
+            'sophia@machine:~/streaming$ follow the best streamers for awesome content',
+            'sophia@machine:~/streaming$ loading [*]',
+            'sophia@machine:~/streaming$ loading [**]',
+            'sophia@machine:~/streaming$ loading [***]',
+            'sophia@machine:~/streaming$ loading [OK]',
+            '🎮 Check out our recommended streamers for top-tier entertainment!',
+            '👾 Follow @tubbzfl for All diffirent types of game content!!',
+            '🎤 Don\'t miss @stallion for some amazing live FPS Gameplay!!!',
+            '🔥 Follow @melodic_hammond for epic gameplays and challenges!',
+            '💬 Join the community and chat with your favorite streamers!'
+            ];
+            let j = 0;
+
+            function typeNewEffect4() {
+                if (j < newLines4.length) {
+                    const line = newLines4[j];
+                    const promptPart = line.split('$')[0] + '$'; 
+                    const commandPart = line.split('$')[1] || '';
+
+                    
+                    consoleElement.innerHTML += promptPart;
+
+                    let k = 0;
+                    function typeNewChar() {
+                        if (k < commandPart.length) {
+                            consoleElement.innerHTML += commandPart[k];
+                            k++;
+                            setTimeout(typeNewChar, 100); 
+                        } else {
+                            consoleElement.innerHTML += '<br>';
+                            j++;
+                            setTimeout(typeNewEffect4, 100); 
+                            scrollToBottom(); 
+                        }
+                    }
+
+                    typeNewChar();
+                } else {
+                    
+                    setTimeout(() => {
+                        consoleElement.innerHTML = '';
+                        i = 0; 
+                        typeEffect(); 
+                    }, 5000);
+                }
+            }
+
+            typeNewEffect4();
+        }
+        
+        function scrollToBottom() {
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+        }
+
+        consoleElement.innerHTML = '';  
+        typeEffect();
+    </script>
+</body>
+</html>
