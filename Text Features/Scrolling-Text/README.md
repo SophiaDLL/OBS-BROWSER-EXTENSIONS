@@ -1,4 +1,4 @@
-## LINUX LOOKING COMMAND PROMPT IN OBS BROWSER
+## SCROLLING TEXT PROMPT IN OBS BROWSER
 
 To preview this you can copy the code into : https://liveweave.com/#
 
