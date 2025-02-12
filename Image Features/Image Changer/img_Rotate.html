@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Rotator</title>
+    <style>
+        .image-container {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #ddd;
+        }
+
+        img {
+            max-width: 1000px;
+            max-height: 1000px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 1s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img id="rotatingImage" src="https://laurelnwk.com/images/1739332151.png" alt="Image"> 
+    </div>
+
+    <script>
+        let images = [
+            "https://laurelnwk.com/images/1739332151.png",  // Laurel NWK Logo
+            "https://cdn3.iconfinder.com/data/icons/social-network-30/512/social-06-512.png", // Youtube Logo
+            "https://cdn-icons-png.flaticon.com/512/1384/1384031.png", // Instagram Logo
+            "https://cdn-icons-png.flaticon.com/512/5968/5968819.png" // Twitch Logo
+        ];
+        let currentIndex = 0;
+
+        function rotateImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            let imageElement = document.getElementById("rotatingImage");
+
+            imageElement.style.transform = "rotate(360deg)";
+            
+            setTimeout(() => {
+                imageElement.src = images[currentIndex];
+                imageElement.style.transform = "rotate(0deg)";
+            }, 1000); 
+        }
+
+        // Rotate every 10 seconds
+        setInterval(rotateImage, 10000); // 10000ms = 10 seconds
+
+    </script>
+
+</body>
+</html>
