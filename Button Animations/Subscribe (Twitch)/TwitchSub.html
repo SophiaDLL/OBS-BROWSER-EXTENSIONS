@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Subscription Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #181818; 
+        }
+
+        .button-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .sub-button {
+            padding: 14px 28px;
+            font-size: 16px;
+            background-color: #9146ff; 
+            color: white;
+            border: none;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px #6b3cba;
+        }
+
+        .sub-button:hover {
+            background-color: #8b52e3; 
+            box-shadow: 0 6px #6b3cba;
+        }
+
+        .sub-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px #6b3cba;
+        }
+
+        .sub-button.subscribed {
+            background-color: #b3b3b3; 
+            color: black;
+        }
+
+        .heart {
+            margin-left: 10px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .sub-button.subscribed .heart {
+            color: #000000; 
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="sub-button" id="subButton">
+            Subscribe
+            <span class="heart">&#9825;</span> 
+        </button>
+    </div>
+
+    <script>
+        const button = document.getElementById('subButton');
+        const heart = button.querySelector('.heart');
+        
+        function simulateSubscription() {
+            setTimeout(() => {
+                button.classList.add('subscribed');
+                button.textContent = 'Subscribed';
+                button.appendChild(heart); 
+                heart.innerHTML = '&#10084;'; 
+
+                setTimeout(() => {
+                    button.classList.add('hidden');
+                    setTimeout(() => {
+                        button.classList.remove('hidden');
+                        button.classList.remove('subscribed');
+                        button.textContent = 'Subscribe';
+                        heart.innerHTML = '&#9825;'; 
+                        simulateSubscription(); 
+                    }, 5 * 60 * 100);
+                }, 2500);
+            }, 1000); 
+        }
+
+        simulateSubscription();
+    </script>
+</body>
+</html>

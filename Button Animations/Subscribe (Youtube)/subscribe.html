@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Animation with Visibility Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+
+        .button-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .subscribe-button {
+            padding: 20px 40px;
+            font-size: 18px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.1s ease;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 5px #999;
+            display: block; 
+        }
+
+        .subscribe-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px #666;
+        }
+
+        .subscribe-button.subscribed {
+            background-color: gray;
+        }
+
+        .hidden {
+            display: none; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="subscribe-button" id="subscribeButton">Subscribe</button>
+    </div>
+
+    <script>
+        const button = document.getElementById('subscribeButton');
+        
+        function simulateClickAnimation() {
+            const rect = button.getBoundingClientRect();
+            const buttonCenterX = rect.left + rect.width / 2;
+            const buttonCenterY = rect.top + rect.height / 2
+            setTimeout(() => {
+                button.classList.add('subscribed');  
+                button.textContent = 'Subscribed';   
+                setTimeout(() => {
+                    button.classList.add('hidden'); 
+                    setTimeout(() => {
+                        button.classList.remove('hidden'); 
+                        button.classList.remove('subscribed');
+                        button.textContent = 'Subscribe'; 
+                        simulateClickAnimation(); 
+                    }, 5 * 60 * 5000); 
+                }, 2500); 
+            }, 500); 
+        }
+        setTimeout(simulateClickAnimation, 1000);
+    </script>
+</body>
+</html>

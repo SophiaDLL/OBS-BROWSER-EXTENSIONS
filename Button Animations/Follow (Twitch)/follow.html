@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow Button Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1d1d1d; 
+        }
+
+        .button-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .follow-button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #9146ff; 
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background-color 0.3s, transform 0.1s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 4px #999;
+            display: inline-flex;
+            align-items: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .follow-button:hover {
+            background-color: #8a40d0; 
+        }
+
+        .follow-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px #666;
+        }
+
+        .follow-button.followed {
+            background-color: #b3b3b3;
+            color: black;
+        }
+
+        .heart {
+            margin-left: 10px;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .follow-button.followed .heart {
+            color: black; 
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="follow-button" id="followButton">
+            Follow
+            <span class="heart">&#9825;</span> 
+        </button>
+    </div>
+
+    <script>
+        const button = document.getElementById('followButton');
+        const heart = button.querySelector('.heart');
+        
+        function simulateClickAnimation() {
+            setTimeout(() => {
+                button.classList.add('followed');
+                button.textContent = 'Following';
+                button.appendChild(heart);
+                heart.innerHTML = '&#10084;'; 
+
+                setTimeout(() => {
+                    button.classList.add('hidden');
+                    setTimeout(() => {
+                        button.classList.remove('hidden');
+                        button.classList.remove('followed');
+                        button.textContent = 'Follow';
+                        heart.innerHTML = '&#9825;';
+                        simulateClickAnimation(); 
+                    }, 5 * 60 * 100);
+                }, 2500); 
+            }, 1000);
+        }
+
+        simulateClickAnimation();
+    </script>
+</body>
+</html>
