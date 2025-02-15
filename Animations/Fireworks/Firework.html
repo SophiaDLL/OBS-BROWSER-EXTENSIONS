@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Fireworks on screen</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .rocket {
+            position: absolute;
+            width: 50px; 
+            height: auto;
+            bottom: 0;
+            animation: launch 1.5s ease-out forwards;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out forwards;
+        }
+        @keyframes launch {
+            0% {
+                transform: translateY(0) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(var(--target-y)) rotate(180deg);
+                opacity: 0;
+            }
+        }
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createFirework() {
+            const rocket = document.createElement('img');
+            rocket.classList.add('rocket');
+            rocket.src = "https://fireburstfireworks.co.uk/buy-fireworks/wp-content/uploads/2019/09/V1019-600x600.png";
+            rocket.style.left = `${Math.random() * window.innerWidth}px`;
+            document.body.appendChild(rocket);
+
+            // Rng for rocket position
+            const targetY = -(Math.random() * window.innerHeight * 0.8); 
+            rocket.style.setProperty('--target-y', `${targetY}px`);
+
+            setTimeout(() => {
+                rocket.remove();
+                explodeFirework(parseFloat(rocket.style.left), window.innerHeight + targetY);
+            }, 1500);
+        }
+
+        function explodeFirework(x, y) {
+            const fireworkContainer = document.createElement('div');
+            fireworkContainer.style.position = 'absolute';
+            fireworkContainer.style.left = `${x}px`;
+            fireworkContainer.style.top = `${y}px`;
+            document.body.appendChild(fireworkContainer);
+
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            const particleCount = 150; // how many particals you want the rocket explosion s to gave (150 is the default set)
+            const angleIncrement = (Math.PI * 2) / particleCount;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.backgroundColor = color;
+
+                // direct and dist calc
+                const angle = angleIncrement * i;
+                const distance = Math.random() * 50 + 50;
+                const particleX = Math.cos(angle) * distance;
+                const particleY = Math.sin(angle) * distance;
+
+                particle.style.setProperty('--x', `${particleX}px`);
+                particle.style.setProperty('--y', `${particleY}px`);
+
+                fireworkContainer.appendChild(particle);
+
+                // deletets the paricals
+                setTimeout(() => {
+                    particle.remove();
+                }, 1500);
+            }
+
+            setTimeout(() => {
+                fireworkContainer.remove();
+            }, 1500);
+        }
+
+        function launchFireworks() {
+            setInterval(createFirework, Math.random() * 1000 + 500);
+        }
+
+        window.onload = launchFireworks;
+    </script>
+</body>
+</html>
